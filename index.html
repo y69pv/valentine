@@ -8,7 +8,7 @@
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    background: linear-gradient(135deg, #ff9ccf, #ff4d94);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,6 +22,7 @@
     margin-bottom: 40px;
     text-align: center;
     text-shadow: 2px 2px 5px #b30059;
+    transition: opacity 1s;
   }
 
   .buttons {
@@ -29,6 +30,7 @@
     gap: 30px;
     position: relative;
     z-index: 2;
+    transition: opacity 1s;
   }
 
   button {
@@ -54,22 +56,20 @@
   }
 
   #heartContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     display: none;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   #loveText {
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
     font-size: 48px;
     color: #fff;
     text-shadow: 2px 2px 8px #b30059;
+    margin-bottom: -60px; /* pour qu’il apparaisse au centre du coeur */
     opacity: 0;
     animation: appear 2s forwards;
     animation-delay: 2s;
@@ -80,28 +80,27 @@
   }
 
   svg {
-    width: 400px;
-    height: 400px;
-    fill: none;
+    width: 300px;
+    height: 300px;
+    fill: #ff4d94;
     stroke: #fff;
     stroke-width: 2;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
     animation: draw 2s forwards;
   }
 
   @keyframes draw {
     to {
       stroke-dashoffset: 0;
-      fill: #ff69b4;
     }
   }
 </style>
 </head>
 <body>
 
-<h1>Veux-tu être ma Valentine ?</h1>
-<div class="buttons">
+<h1 id="title">Veux-tu être ma Valentine ?</h1>
+<div class="buttons" id="buttons">
   <button id="yesBtn">Oui 💖</button>
   <button id="noBtn">Non</button>
 </div>
@@ -109,35 +108,4 @@
 <div id="heartContainer">
   <div id="loveText">Je t'aime ❤️</div>
   <svg viewBox="0 0 512 512">
-    <path d="M471.701,73.356c-52.957-52.955-138.742-52.955-191.699,0L256,97.358l-24.002-24.002
-      c-52.957-52.955-138.742-52.955-191.699,0c-52.955,52.957-52.955,138.742,0,191.699L256,512l191.701-247.945
-      C524.656,212.098,524.656,126.313,471.701,73.356z"/>
-  </svg>
-</div>
-
-<script>
-  const noBtn = document.getElementById('noBtn');
-  const yesBtn = document.getElementById('yesBtn');
-  const buttonsDiv = document.querySelector('.buttons');
-  const heartContainer = document.getElementById('heartContainer');
-
-  // Bouton NON qui fuit
-  noBtn.addEventListener('mouseenter', () => {
-    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
-    noBtn.style.position = 'absolute';
-    noBtn.style.left = randomX + 'px';
-    noBtn.style.top = randomY + 'px';
-  });
-
-  // Bouton OUI
-  yesBtn.addEventListener('click', () => {
-    buttonsDiv.style.display = 'none';
-    heartContainer.style.display = 'block';
-  });
-</script>
-
-</body>
-</html>
+    <!-- Cœur plus a
