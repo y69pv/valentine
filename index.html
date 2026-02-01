@@ -108,4 +108,41 @@
 <div id="heartContainer">
   <div id="loveText">Je t'aime ❤️</div>
   <svg viewBox="0 0 512 512">
-    <!-- Cœur plus a
+    <!-- Cœur plus arrondi et joli -->
+    <path d="M256 464s-16-14.5-64-60c-44-42-88-96-88-160 0-44 36-80 80-80 28 0 52 16 64 40 12-24 36-40 64-40 44 0 80 36 80 80 0 64-44 118-88 160-48 45.5-64 60-64 60z"/>
+  </svg>
+</div>
+
+<script>
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  const buttonsDiv = document.getElementById('buttons');
+  const heartContainer = document.getElementById('heartContainer');
+  const title = document.getElementById('title');
+
+  // Bouton NON qui fuit mais ne disparait jamais
+  noBtn.addEventListener('mouseenter', () => {
+    const padding = 20;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.randomHeight * maxY);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = randomX + 'px';
+    noBtn.style.top = randomY + 'px';
+  });
+
+  // Bouton OUI
+  yesBtn.addEventListener('click', () => {
+    // Faire disparaitre titre et boutons
+    title.style.opacity = 0;
+    buttonsDiv.style.opacity = 0;
+    setTimeout(() => {
+      buttonsDiv.style.display = 'none';
+      heartContainer.style.display = 'flex';
+    }, 1000);
+  });
+</script>
+
+</body>
+</html>
