@@ -6,111 +6,100 @@
 <title>Ma Valentine 💖</title>
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        font-family: 'Segoe UI', sans-serif;
-        overflow: hidden;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
 
-    .container {
-        text-align: center;
-        position: relative;
-    }
+.container {
+    text-align: center;
+}
 
-    h1 {
-        color: white;
-        font-size: 2.5em;
-        margin-bottom: 30px;
-    }
+h1 {
+    color: white;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
 
-    .buttons {
-        position: relative;
-        height: 120px;
-    }
+.buttons {
+    position: relative;
+    height: 120px;
+}
 
-    button {
-        font-size: 1.2em;
-        padding: 15px 35px;
-        border-radius: 30px;
-        border: none;
-        cursor: pointer;
-        transition: 0.2s;
-        position: absolute;
-    }
+button {
+    font-size: 1.2em;
+    padding: 15px 35px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+}
 
-    #yes {
-        background: #ff4d6d;
-        color: white;
-        left: 0;
-    }
+#yes {
+    background: #ff4d6d;
+    color: white;
+    left: 0;
+}
 
-    #yes:hover {
-        transform: scale(1.1);
-    }
+#no {
+    background: white;
+    color: #ff4d6d;
+    left: 170px;
+}
 
-    #no {
-        background: white;
-        color: #ff4d6d;
-        left: 160px;
-    }
+/* COEUR */
+.heart-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
 
-    /* COEUR */
-    .heart-container {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-    }
+.love-text {
+    font-size: 3em;
+    color: white;
+    margin-bottom: 20px;
+    animation: fadeIn 2s;
+}
 
-    .love-text {
-        font-size: 3em;
-        color: white;
-        margin-bottom: 20px;
-        animation: fadeIn 2s ease-in-out;
-        z-index: 10;
-    }
+svg {
+    width: 300px;
+    height: 280px;
+}
 
-    svg {
-        width: 280px;
-        height: 260px;
-    }
+.heart-path {
+    fill: none;
+    stroke: #ff4d6d;
+    stroke-width: 6;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: draw 2s forwards;
+}
 
-    .heart-path {
-        fill: none;
-        stroke: #ff4d6d;
-        stroke-width: 6;
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
-        animation: draw 2s forwards;
-    }
+.heart-fill {
+    fill: #ff4d6d;
+    opacity: 0;
+    animation: fill 2s forwards;
+    animation-delay: 2s;
+}
 
-    .heart-fill {
-        fill: #ff4d6d;
-        opacity: 0;
-        animation: fill 2s forwards;
-        animation-delay: 2s;
-    }
+@keyframes draw {
+    to { stroke-dashoffset: 0; }
+}
 
-    @keyframes draw {
-        to {
-            stroke-dashoffset: 0;
-        }
-    }
+@keyframes fill {
+    to { opacity: 1; }
+}
 
-    @keyframes fill {
-        to {
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 </style>
 </head>
 
@@ -127,50 +116,51 @@
     <div class="heart-container" id="heartContainer">
         <div class="love-text">Je t’aime ❤️</div>
 
-        <!-- VRAI COEUR SVG -->
-        <svg viewBox="0 0 512 512">
+        <!-- COEUR SVG CORRIGÉ -->
+        <svg viewBox="-20 -20 552 552" preserveAspectRatio="xMidYMid meet">
             <path class="heart-path"
-                  d="M256 472s-200-112-200-272c0-72 56-128 128-128
-                  56 0 96 32 116 72
-                  20-40 60-72 116-72
-                  72 0 128 56 128 128
-                  0 160-200 272-200 272z"/>
+                  d="M256 472
+                     C256 472 56 360 56 200
+                     C56 104 136 56 200 56
+                     C248 56 280 80 256 120
+                     C232 80 264 56 312 56
+                     C376 56 456 104 456 200
+                     C456 360 256 472 256 472 Z"/>
+
             <path class="heart-fill"
-                  d="M256 472s-200-112-200-272c0-72 56-128 128-128
-                  56 0 96 32 116 72
-                  20-40 60-72 116-72
-                  72 0 128 56 128 128
-                  0 160-200 272-200 272z"/>
+                  d="M256 472
+                     C256 472 56 360 56 200
+                     C56 104 136 56 200 56
+                     C248 56 280 80 256 120
+                     C232 80 264 56 312 56
+                     C376 56 456 104 456 200
+                     C456 360 256 472 256 472 Z"/>
         </svg>
     </div>
 </div>
 
 <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const buttons = document.getElementById("buttons");
-    const question = document.getElementById("question");
-    const heartContainer = document.getElementById("heartContainer");
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const buttons = document.getElementById("buttons");
+const question = document.getElementById("question");
+const heartContainer = document.getElementById("heartContainer");
 
-    function moveNo() {
-        const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-        const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+function moveNo() {
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+}
 
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
 
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
-    }
-
-    noBtn.addEventListener("mouseover", moveNo);
-    noBtn.addEventListener("touchstart", moveNo);
-
-    yesBtn.addEventListener("click", () => {
-        question.style.display = "none";
-        buttons.style.display = "none";
-        heartContainer.style.display = "flex";
-    });
+yesBtn.addEventListener("click", () => {
+    question.style.display = "none";
+    buttons.style.display = "none";
+    heartContainer.style.display = "flex";
+});
 </script>
 
 </body>
