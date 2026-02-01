@@ -8,24 +8,27 @@
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: #ffe6f0;
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     flex-direction: column;
+    overflow: hidden;
   }
 
   h1 {
-    color: #ff007f;
+    color: #fff;
     margin-bottom: 40px;
     text-align: center;
+    text-shadow: 2px 2px 5px #b30059;
   }
 
   .buttons {
     display: flex;
     gap: 30px;
     position: relative;
+    z-index: 2;
   }
 
   button {
@@ -39,14 +42,15 @@
   }
 
   #yesBtn {
-    background-color: #ff69b4;
+    background-color: #ff1493;
     color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   }
 
   #noBtn {
     background-color: white;
-    color: black;
-    border: 2px solid #ccc;
+    color: #ff1493;
+    border: 2px solid #ff1493;
   }
 
   #heartContainer {
@@ -55,14 +59,31 @@
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-    pointer-events: none;
+    z-index: 1;
+  }
+
+  #loveText {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 48px;
+    color: #fff;
+    text-shadow: 2px 2px 8px #b30059;
+    opacity: 0;
+    animation: appear 2s forwards;
+    animation-delay: 2s;
+  }
+
+  @keyframes appear {
+    to { opacity: 1; }
   }
 
   svg {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     fill: none;
-    stroke: #ff007f;
+    stroke: #fff;
     stroke-width: 2;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
@@ -74,22 +95,6 @@
       stroke-dashoffset: 0;
       fill: #ff69b4;
     }
-  }
-
-  #loveText {
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 36px;
-    color: #ff007f;
-    opacity: 0;
-    animation: appear 2s forwards;
-    animation-delay: 2s;
-  }
-
-  @keyframes appear {
-    to { opacity: 1; }
   }
 </style>
 </head>
@@ -103,9 +108,10 @@
 
 <div id="heartContainer">
   <div id="loveText">Je t'aime ❤️</div>
-  <svg viewBox="0 0 32 29.6">
-    <path d="M23.6,0c-2.9,0-5.4,1.7-6.6,4.1C15.8,1.7,13.3,0,10.4,0C4.7,0,0,4.7,0,10.4c0,11.1,16,19.2,16,19.2
-      s16-8.1,16-19.2C32,4.7,27.3,0,23.6,0z"/>
+  <svg viewBox="0 0 512 512">
+    <path d="M471.701,73.356c-52.957-52.955-138.742-52.955-191.699,0L256,97.358l-24.002-24.002
+      c-52.957-52.955-138.742-52.955-191.699,0c-52.955,52.957-52.955,138.742,0,191.699L256,512l191.701-247.945
+      C524.656,212.098,524.656,126.313,471.701,73.356z"/>
   </svg>
 </div>
 
@@ -115,14 +121,18 @@
   const buttonsDiv = document.querySelector('.buttons');
   const heartContainer = document.getElementById('heartContainer');
 
+  // Bouton NON qui fuit
   noBtn.addEventListener('mouseenter', () => {
-    const maxX = buttonsDiv.offsetWidth - noBtn.offsetWidth;
-    const maxY = buttonsDiv.offsetHeight - noBtn.offsetHeight;
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
     const randomX = Math.floor(Math.random() * maxX);
     const randomY = Math.floor(Math.random() * maxY);
-    noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = randomX + 'px';
+    noBtn.style.top = randomY + 'px';
   });
 
+  // Bouton OUI
   yesBtn.addEventListener('click', () => {
     buttonsDiv.style.display = 'none';
     heartContainer.style.display = 'block';
